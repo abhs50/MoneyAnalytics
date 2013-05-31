@@ -2,42 +2,58 @@
 	<head>
 		<link rel="stylesheet" href="css/index.css" type="text/css">
 		<script type="text/javascript" src="js/jquery-2.0.0.js"></script>
+		<script src="js/date.js"></script>
 		<script type="text/javascript" src="js/index.js"></script>
 	</head>
 	<body>
 		<div id="new_transaction">
-			<label>Spending Category:</label>
-			<input list="spending_category" placeholder="Select from list or enter a new category..." size="35" id="spending_category" class="input_field">
-				<datalist id="spending_category">
-				  <option value="Gift">
-				  <option value="Transfer">
-				  <option value="Fast Food">
-				  <option value="Taxi and Rental Car">
-				  <option value="Travel">
-				  <option value="Service Fee">
-				  <option value="Groceries">
-				</datalist>
-				<br/>
-				<label>Amount spent:</label>
-				<input type="text" placeholder="Enter amount spent..." id="spent_amount" class="input_field"/>
-				<span id='spent_amount_error' name='spent_amount_error'></span>
-				<br/>	
-				<input type="button" value="Add" id="add_transaction"/>
-				<p>
-					<div id="transaction_information">
-						<table id="transaction_table">
-							<tr>
-								<th>Category</th>
-								<th>Amount</th>
-								<th>Date</th>
-							</tr>
-						</table>
-					</div>
-				</p>
-				
+			<input type="button" value="Add Transaction" id="btnShowTransactionForm">
 		</div>
-		
-	
+		<div id="transaction_form">
+			<div id="newTransactionAmount">
+				<label for="txtCategory">Category</label>
+				<input type="text" name="" id="txtCategory" list="someCategories">
+				<datalist id="someCategories">
+					<option>Clothing</option>
+					<option>Groceries</option>
+					<option>Fast Food</option>
+					<option>Movies</option>
+					<option>Rent</option>
+					<option>Restaurants</option>
+					<option>Travel</option>
+				</datalist>
+				
+				<label for="txtAmountSpent">Amount</label>
+				<input type="text" name="" id="txtAmountSpent">
+			</div>
+			
+
+			<div id="newTransactionFormOtherDetails">
+				<label for="txtDescription">Description</label>
+				<input type="text" name="" id="txtDescription">
+			</div>
+
+
+			<div id="addTransaction">
+				<input type="button" name="" id="btnAddTransaction" value="Add">
+			</div>
+		</div>
+
+		<div id="trasactionDetails">
+			<table id="transaction_table">
+				<thead>
+					<tr>
+						<td>Category</td>
+						<td>Amount</td>
+						<td>Description</td>
+						<td>Date</td>
+					</tr>
+				</thead>
+				<tbody id="transaction_table_body">
+					
+				</tbody>
+			</table>
+		</div>
 	</body>
 </html>
 

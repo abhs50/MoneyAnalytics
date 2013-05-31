@@ -1,45 +1,46 @@
 $(document).ready(function(){
-	$('#spent_amount').keyup(function(){
-		var amountSpent = $(this).val();
-		console.log(amountSpent);
-		if(amountSpent.length > 0){
-			var regex = /^[0-9]*([.][0-9]+)?$/;
-			if(!regex.test(amountSpent)){
-				$('#spent_amount_error').html('Only numbers are allowed');
-			}else{
-				$('#spent_amount_error').html('');
-			}
-		}else{
-			$('#spent_amount_error').html('');
-		}
-	});
 	
-	$('#add_transaction').click(function(){
-		addTransaction();
-	});
-	
+	function showTransactionForm(){
+		$("#transaction_form").fadeIn(400);
+	}
+
+	function hideTransactionForm(){
+		$("#transaction_form").fadeOut(400);	
+	}
+
 	function addTransaction(){
-		console.log('Button clicked');
-		var spendingCategory = $('#spending_category').val();
-		var amountSpent = $('#spent_amount').val();
-		console.log(spendingCategory);
-		console.log(amountSpent);
-		
-		var dateString = getTodaysDate();
-		
-		var newRow = "<tr><td>"+$('#spending_category').val()+"</td><td>"+$('#spent_amount').val()+"</td><td>"+dateString+"</td></tr>";
-		console.log(newRow);
-		$('#transaction_table').append(newRow);
-		
+		addNewTransaction();
+		hideTransactionForm();
 	}
-	
-	function getTodaysDate(){
-		var currentDate = new Date();
-		var day = currentDate.getDate();
-		var month = currentDate.getMonth();
-		
-		var dateString = month + ' ' + day;
-		return dateString;
+
+	function getCurrentDate(){
+		var dt = Date.parse('today');
+		return dt.toString('MMM, dd');
+
 	}
+
+	function formTableRow(spendingCategory, amountSpent,
+		description, dt){
+		var newRow = "<tr><td>" + spendingCategory + "</td><td>" + amountSpent + "</td><td>" 
+					+ description + "</td><td>" + dt + "</td></tr>";
+		return newRow;
+	}
+
+	function addNewTransaction(){
+		var spendingCategory = $("#txtCategory").val();
+		var amountSpent = $("#txtAmountSpent").val();
+		var description = $("#txtDescription").val();
+		var dt = getCurrentDate();
+		
+		var newRow = formTableRow(spendingCategory, amountSpent, description, dt);
+		$('#transaction_table_body').append(newRow);
+
+	}
+
+	//show the transaction form
+	$("#btnShowTransactionForm").click(showTransactionForm);
+
+	//add a new transaction
+	$("#btnAddTransaction").click(addTransaction);
 	
 });
